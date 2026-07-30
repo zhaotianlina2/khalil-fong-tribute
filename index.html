@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>方大同 | Soulboy 的音乐旅程</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf8f3;
+      --warm-white: #fffaf5;
+      --beige: #f3e9d9;
+      --tan: #d4b896;
+      --brown: #6b4f3a;
+      --dark-brown: #3d2e24;
+      --coral: #e89b7b;
+      --terracotta: #c97b5b;
+      --gold: #c9a86c;
+      --charcoal: #2c2c2c;
+      --shadow: rgba(61, 46, 36, 0.08);
+      --shadow-hover: rgba(61, 46, 36, 0.16);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Serif SC', serif;
+      background-color: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Playfair Display', 'Noto Serif SC', serif;
+      font-weight: 600;
+      color: var(--dark-brown);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--brown);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(253, 248, 243, 0.95), rgba(253, 248, 243, 0));
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark-brown);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brown);
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--terracotta);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8rem 5% 5rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(232, 155, 123, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(201, 168, 108, 0.1) 0%, transparent 50%),
+        var(--warm-white);
+    }
+
+    .hero-flower {
+      position: absolute;
+      right: -5%;
+      top: 10%;
+      width: 45vw;
+      max-width: 600px;
+      opacity: 0.18;
+      transform: rotate(-15deg);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-label {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: var(--beige);
+      color: var(--brown);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: var(--dark-brown);
+    }
+
+    .hero h1 span {
+      display: block;
+      font-size: 0.4em;
+      font-weight: 400;
+      color: var(--brown);
+      letter-spacing: 0.15em;
+      margin-top: 0.5rem;
+    }
+
+    .hero-quote {
+      font-size: 1.25rem;
+      color: var(--brown);
+      font-style: italic;
+      margin-bottom: 2rem;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--coral);
+    }
+
+    .hero-desc {
+      color: var(--charcoal);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--dark-brown);
+      color: var(--cream);
+      text-decoration: none;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px var(--shadow-hover);
+    }
+
+    .hero-image {
+      position: relative;
+      animation: fadeIn 1.2s ease-out 0.3s both;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px var(--shadow-hover);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      border: 1px solid var(--tan);
+      border-radius: 32px;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    /* About */
+    .about {
+      padding: 7rem 5%;
+      background: var(--warm-white);
+      position: relative;
+    }
+
+    .about-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px var(--shadow);
+    }
+
+    .about-text h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text p {
+      margin-bottom: 1.2rem;
+      color: var(--charcoal);
+      font-size: 1.05rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      padding: 0.5rem 1rem;
+      background: var(--beige);
+      color: var(--brown);
+      border-radius: 100px;
+      font-size: 0.9rem;
+    }
+
+    /* Albums */
+    .albums {
+      padding: 7rem 0;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .albums-header {
+      padding: 0 5%;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .albums-scroll {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 5% 3rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--tan) transparent;
+    }
+
+    .albums-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .albums-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .albums-scroll::-webkit-scrollbar-thumb {
+      background: var(--tan);
+      border-radius: 100px;
+    }
+
+    .album-card {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: var(--warm-white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px var(--shadow);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .album-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px var(--shadow-hover);
+    }
+
+    .album-cover {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .album-info {
+      padding: 1.5rem;
+    }
+
+    .album-year {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .album-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-brown);
+    }
+
+    .album-desc {
+      font-size: 0.95rem;
+      color: var(--brown);
+      line-height: 1.6;
+    }
+
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--brown);
+      font-size: 0.9rem;
+    }
+
+    .scroll-hint svg {
+      width: 24px;
+      height: 24px;
+      animation: slideX 1.5s ease-in-out infinite;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 7rem 5%;
+      background: var(--warm-white);
+    }
+
+    .gallery-header {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .gallery-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      grid-auto-rows: 280px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px var(--shadow);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item.tall {
+      grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+
+    /* Charity */
+    .charity {
+      padding: 7rem 5%;
+      background: var(--cream);
+      position: relative;
+    }
+
+    .charity-wide {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .charity-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .charity-timeline {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .charity-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--coral), var(--gold));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      background: var(--warm-white);
+      padding: 1.75rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 1.75rem;
+      width: 14px;
+      height: 14px;
+      background: var(--warm-white);
+      border: 3px solid var(--coral);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .timeline-item:nth-child(odd) {
+      margin-right: 1.5rem;
+      text-align: right;
+    }
+
+    .timeline-item:nth-child(odd)::before {
+      right: -2.32rem;
+    }
+
+    .timeline-item:nth-child(even) {
+      margin-left: 1.5rem;
+    }
+
+    .timeline-item:nth-child(even)::before {
+      left: -2.32rem;
+    }
+
+    .timeline-year {
+      display: inline-block;
+      padding: 0.2rem 0.75rem;
+      background: var(--beige);
+      color: var(--terracotta);
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-size: 1.15rem;
+      color: var(--dark-brown);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .timeline-desc {
+      color: var(--brown);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      padding: 5rem 5% 3rem;
+      background: var(--dark-brown);
+      color: var(--beige);
+      text-align: center;
+    }
+
+    footer h2 {
+      color: var(--cream);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+    }
+
+    footer p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0.85;
+      font-size: 1.05rem;
+    }
+
+    .footer-flower {
+      width: 60px;
+      opacity: 0.6;
+      margin: 0 auto 1.5rem;
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-top: 3rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideX {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content,
+      .about-grid,
+      .charity-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 6rem;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .hero-image img {
+        max-width: 380px;
+      }
+
+      .charity-image {
+        position: static;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+      }
+
+      .gallery-item.wide {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.wide,
+      .gallery-item.tall {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .album-card {
+        flex: 0 0 260px;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo">Khalil Fong</a>
+    <ul class="nav-links">
+      <li><a href="#about">关于</a></li>
+      <li><a href="#albums">专辑</a></li>
+      <li><a href="#gallery">影像</a></li>
+      <li><a href="#charity">公益</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <img src="assets/photos/flower.png" alt="" class="hero-flower">
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="hero-label">SOULBOY · 唱作人</span>
+        <h1>方大同 <span>KHALIL FONG</span></h1>
+        <p class="hero-quote">"音乐是我表达爱的方式。"</p>
+        <p class="hero-desc">
+          从 2005 年《Soulboy》横空出世，到 2024 年《梦想家》温柔告别，
+          方大同用二十年时间，把 Soul、R&B、Jazz 与中国风酿成了独属于他的声音。
+          低调、温柔、固执地热爱着音乐与世界。
+        </p>
+        <a href="#albums" class="hero-cta">
+          浏览专辑
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="assets/photos/angel.png" alt="方大同">
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="assets/photos/blue-shirt.png" alt="方大同">
+      </div>
+      <div class="about-text">
+        <h2>温柔而坚定的音乐人</h2>
+        <p>
+          方大同生于音乐家庭，父亲是鼓手，母亲从事音乐教育。从小浸淫在 Stevie Wonder、Earth, Wind & Fire 的灵魂乐里，
+          让他形成了对旋律、和声与节奏的敏锐嗅觉。
+        </p>
+        <p>
+          他的性格像他的音乐一样：不张扬、不迎合，却总在细节处打动人心。
+          无论是《Love Song》的甜蜜，还是《特别的人》的深情，抑或是《才二十三》里对生命流转的叹息，
+          他始终用最真诚的笔触书写着爱与生活。
+        </p>
+        <p>
+           Vegetarian、书卷气、爱猫、喜欢小孩——这些标签背后，是一个把温柔当作信仰的人。
+        </p>
+        <div class="tag-list">
+          <span class="tag">Soul</span>
+          <span class="tag">R&B</span>
+          <span class="tag">Neo-Soul</span>
+          <span class="tag">Jazz</span>
+          <span class="tag">唱作人</span>
+          <span class="tag">吉他手</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="albums" id="albums">
+    <div class="albums-header">
+      <div>
+        <h2 class="section-title">专辑旅程</h2>
+        <p class="section-subtitle">滑动浏览方大同的十张录音室专辑</p>
+      </div>
+      <div class="scroll-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        左右滑动
+      </div>
+    </div>
+    <div class="albums-scroll">
+      <article class="album-card">
+        <img src="assets/covers/soulboy.jpg" alt="Soulboy" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2005</div>
+          <h3 class="album-title">Soulboy</h3>
+          <p class="album-desc">首张专辑，以华语 Neo-Soul 初试啼声，描摹世间百态与广博之爱。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/love.jpg" alt="爱爱爱" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2006</div>
+          <h3 class="album-title">爱爱爱</h3>
+          <p class="album-desc">用复古 Motown 与 R&B 讲述爱情，温柔却不甜腻。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/future.jpg" alt="未来" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2007</div>
+          <h3 class="album-title">未来</h3>
+          <p class="album-desc">以爱情与环保双线并行，警醒人们珍惜当下方能构筑美好未来。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/orange.jpg" alt="橙月" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2008</div>
+          <h3 class="album-title">橙月</h3>
+          <p class="album-desc">如同黄昏暖光，用温柔通俗的旋律讲述各式各样浪漫与遗憾的爱情故事。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/timeless.jpg" alt="Timeless 可啦思刻" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2009</div>
+          <h3 class="album-title">Timeless 可啦思刻</h3>
+          <p class="album-desc">向经典致敬的翻唱专辑，展现深厚的爵士与灵魂乐底蕴。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/fifteen.jpg" alt="15" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2011</div>
+          <h3 class="album-title">15</h3>
+          <p class="album-desc">回到乐队编制与吉他摇滚，记录 15 岁那年的音乐初心。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/backfuture.jpg" alt="回到未来" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2012</div>
+          <h3 class="album-title">回到未来</h3>
+          <p class="album-desc">复古与未来交织，用摩城之声回望经典年代。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/danger.jpg" alt="危险世界" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2014</div>
+          <h3 class="album-title">危险世界</h3>
+          <p class="album-desc">音乐视野更加宏大，关注社会议题与人性深处。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/jtw.jpg" alt="JTW 西游记" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2016</div>
+          <h3 class="album-title">JTW 西游记</h3>
+          <p class="album-desc">以取经喻音乐征途，融合国风与西方律动，探讨欲望、善恶与人生修行。</p>
+        </div>
+      </article>
+      <article class="album-card">
+        <img src="assets/covers/dreamer.jpg" alt="梦想家" class="album-cover">
+        <div class="album-info">
+          <div class="album-year">2024</div>
+          <h3 class="album-title">梦想家 The Dreamer</h3>
+          <p class="album-desc">历经病痛后的回归之作，轻盈却厚重，是对梦想的温柔告白。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="gallery-header">
+      <h2 class="section-title">影像记忆</h2>
+      <p class="section-subtitle">镜头里的大同：舞台、生活与那些温柔的瞬间</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall">
+        <img src="assets/photos/guitar-live.png" alt="演唱会弹吉他">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/laugh.png" alt="大笑">
+      </div>
+      <div class="gallery-item wide">
+        <img src="assets/photos/albums-collage.png" alt="专辑拼贴">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/phone.png" alt="电话">
+      </div>
+      <div class="gallery-item tall">
+        <img src="assets/photos/gift.png" alt="礼物">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/meal.png" alt="吃饭">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/plaid-live.png" alt="格子衫演唱会">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/cool.png" alt="墨镜">
+      </div>
+      <div class="gallery-item wide">
+        <img src="assets/photos/albums-sketch.png" alt="手绘专辑">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/pray.png" alt="手势">
+      </div>
+      <div class="gallery-item">
+        <img src="assets/photos/white-jacket.png" alt="白衣写真">
+      </div>
+    </div>
+  </section>
+
+  <section class="charity" id="charity">
+    <div class="charity-wide">
+      <div class="charity-header">
+        <h2 class="section-title">音乐之外的温柔</h2>
+        <p class="section-subtitle">方大同 2008–2025 公益时间线</p>
+      </div>
+      <div class="charity-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2008</div>
+            <div class="timeline-title">太阳计划公益</div>
+            <div class="timeline-desc">参与太阳计划公益，录制公益歌曲传递少年正向价值观；演唱会为汶川地震灾区祈福筹款。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2009</div>
+            <div class="timeline-title">慈善音乐会与义卖</div>
+            <div class="timeline-desc">帮助云南慈善音乐会，义卖个人周边，助力乡村孩童求学。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2011</div>
+            <div class="timeline-title">"爱智·我要上学"</div>
+            <div class="timeline-desc">献唱"我要上学"助学行动主题曲，持续关注乡村留守儿童教育。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2015</div>
+            <div class="timeline-title">全球气候实况直播</div>
+            <div class="timeline-desc">参与全球气候实况直播，演唱环保歌曲《菌》，公开拒绝食用鱼翅，守护海洋生态。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2016</div>
+            <div class="timeline-title">UNESCO 和平主题曲</div>
+            <div class="timeline-desc">受联合国教科文组织邀请创作和平主题公益曲，在多校园推广包容与和平理念。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-title">听障儿童基金捐赠</div>
+            <div class="timeline-desc">向听障儿童基金会捐赠七位数善款，成立音乐厂牌，扶持小众新生代音乐人。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019</div>
+            <div class="timeline-title">云南音乐种子教室</div>
+            <div class="timeline-desc">在云南山区捐建 10 间音乐种子教室，配备电子琴等乐器，为乡村孩子提供音乐教育。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-title">哈佛分享中华文化</div>
+            <div class="timeline-desc">前往哈佛大学分享中华文化及音乐，搭建中外文化交流桥梁；持续素食多年，倡导善待动物。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-title">伴侣动物保护</div>
+            <div class="timeline-desc">投身伴侣动物保护，推动动物福利相关倡议，呼吁大众关爱流浪小动物。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-title">公益专辑《梦想家》</div>
+            <div class="timeline-desc">带病完成公益专辑《梦想家》创作，立下遗嘱，身后全部音乐版权收益捐赠罕见病救助基金。</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-title">贵州山区音乐派送</div>
+            <div class="timeline-desc">生前持续奔赴贵州山区，亲手为乡村孩子派送二手乐器，并个人每年稳定将近两成收入投入各类慈善项目。</div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="assets/photos/flower.png" alt="" class="footer-flower">
+    <h2>谢谢你，把爱写成歌</h2>
+    <p>
+      这个世界因为你的音乐而变得更温柔一点。
+      愿你在另一个地方，依然弹着吉他，写着那些让人微笑的歌。
+    </p>
+    <p class="copyright">粉丝致敬页面 · 图片与资料由用户提供</p>
+  </footer>
+
+  <script>
+    // Timeline reveal animation
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      observer.observe(item);
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
