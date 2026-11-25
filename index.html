@@ -676,6 +676,11 @@
         scroll-behavior: auto !important;
       }
     }
+    .promo-film{background:var(--cream);padding:7rem 5%;}
+    .promo-film-inner{max-width:1100px;margin:0 auto;text-align:center;}
+    .promo-film-intro{max-width:700px;margin:0 auto 2.5rem;}
+    .promo-film-video{display:block;width:100%;aspect-ratio:16/9;object-fit:contain;background:#17120f;border-radius:18px;box-shadow:0 20px 55px var(--shadow-hover);}
+    .promo-film-note{color:var(--brown);font-size:.8rem;letter-spacing:.08em;margin-top:1rem;}
   </style>
 </head>
 <body>
@@ -948,6 +953,20 @@
             <div class="timeline-desc">生前持续奔赴贵州山区，亲手为乡村孩子派送二手乐器，并个人每年稳定将近两成收入投入各类慈善项目。</div>
           </div>
         </div>
+    </div>
+  </section>
+
+  <section class="promo-film" id="promo-film">
+    <div class="promo-film-inner">
+      <div class="promo-film-intro">
+        <h2 class="section-title">一段温柔的回声</h2>
+        <p class="section-subtitle">二十秒无声短片，献给方大同的音乐与记忆。</p>
+      </div>
+      <video class="promo-film-video" controls playsinline preload="metadata" aria-label="方大同致敬网站 20 秒无声宣传片">
+        <source src="assets/videos/khalil-fong-tribute.mp4" type="video/mp4">
+        您的浏览器暂不支持 HTML 视频播放。
+      </video>
+      <p class="promo-film-note">20 秒 · 1920 × 1080 · 静音</p>
     </div>
   </section>
 
